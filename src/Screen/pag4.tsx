@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Alert, Text, TouchableOpacity, View } from 'react-native'
 import { styles } from '../theme/appTheme'
 import { BodyComponents } from '../components/BodyComponents'
@@ -13,7 +13,10 @@ num1:Number;
 num2:Number;
 }
 interface Props extends StackScreenProps<RootStackParams, 'pag2'> { };
-export const pag4 = ({num1, num2,navigation}:Props) => {
+export const pag4 = ({navigation}:Props) => {
+
+    const [num1, setnum1] = useState<Number>(0)
+    const [num2, setnum2] = useState<Number>(0)
 
     const mayorIgual = () => {
         if (num1 === num2 ) {
@@ -25,14 +28,14 @@ export const pag4 = ({num1, num2,navigation}:Props) => {
         }
         else if (num1 > num2 ) {  
             Alert.alert(
-                `el numero {num1} es mayor que {num2}`,
+                `el numero ${num1} es mayor que ${num2}`,
                 
             );
         
         }
     else if (num2 > num1 ) {  
         Alert.alert(
-            `el numero {num2} es mayor que {num1}`,
+            `el numero ${num2} es mayor que ${num1}`,
             
         );
         
@@ -50,15 +53,15 @@ export const pag4 = ({num1, num2,navigation}:Props) => {
                 <View style={styles.contentInput}>
                     <InputComponent
                         placeholder='ingrese un numero'
-                        handleSetValues={Number}
+                        handleSetValues={setnum1=>(num1)}
                         name='num1' />
                     <InputComponent
                         placeholder='ingrese un numero'
-                        handleSetValues={Number}
+                        handleSetValues={setnum2=>(num2)}
                         name='num2' 
                         />
                 </View>
-                <ButtonComponent TextButton='Iniciar' actionButton={mayorIgual} />
+                <ButtonComponent TextButton='>=' actionButton={mayorIgual} />
         
             </BodyComponents>
             <TouchableOpacity onPress={() => 

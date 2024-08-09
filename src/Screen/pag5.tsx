@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Alert, Text, View } from 'react-native'
 import { styles } from '../theme/appTheme'
 import { BodyComponents } from '../components/BodyComponents'
@@ -11,9 +11,12 @@ num2:Number;
 resultado:string;
 }
 
-export const pag5 = ({num1, num2,resultado}:Props) => {
+export const pag5 = () => {
 
-    const mayorIgual = () => {
+    const [num1, setnum1] = useState<Number>(0)
+    const [num2, setnum2] = useState<Number>(0)
+
+    const menorIgual = () => {
         if (num1 == num2 ) {
             Alert.alert(
                 `el numero es igual`,
@@ -22,14 +25,14 @@ export const pag5 = ({num1, num2,resultado}:Props) => {
         }
         else if (num1 < num2 ) {  
             Alert.alert(
-                `el numero {num1} es menor que {num2}`,
+                `el numero ${num1} es menor que ${num2}`,
                 
             );
             
         }
     else if (num2 < num1 ) {  
         Alert.alert(
-            `el numero {num2} es menor que {num1}`,
+            `el numero ${num2} es menor que ${num1}`,
             
         );
     }else{
@@ -48,14 +51,14 @@ export const pag5 = ({num1, num2,resultado}:Props) => {
                 <View style={styles.contentInput}>
                     <InputComponent
                         placeholder='ingrese un numero'
-                        handleSetValues={Number}
+                        handleSetValues={setnum1}
                         name='num1' />
                     <InputComponent
                         placeholder='ingrese in numero'
-                        handleSetValues={Number}
+                        handleSetValues={setnum2}
                         name='num2' />
                 </View>
-                <ButtonComponent TextButton='Iniciar' actionButton={mayorIgual} />
+                <ButtonComponent TextButton='<=' actionButton={menorIgual} />
         
             </BodyComponents>
     </View>
